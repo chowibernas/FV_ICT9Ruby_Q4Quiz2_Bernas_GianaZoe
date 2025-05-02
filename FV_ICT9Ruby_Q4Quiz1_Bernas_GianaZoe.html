@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Quiz1</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+    .calculator {
+        text-align: center;
+    }
+
+    img {
+        margin-right: 100px;
+        margin-top: 100px;
+        width: 400px;
+        height: 400px;
+    }
+
+    .value {
+        color: yellow;
+    }
+
+    body {
+        background-color: #221f24;
+        color: white;
+        font-family: 'Parkinsans', sans-serif;
+        font-weight: 500;
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+
+    .footer {
+        text-align: center;
+        color: grey;
+        font-style: italic;
+        font-family: sans-serif;
+    }
+
+    .purplebox {
+        background-color: #9f86c0;
+        border-radius: 25px;
+    }
+</style>
+
+<body>
+
+    <div class="fonts">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Barriecito&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Parkinsans:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Barriecito&family=Caveat&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Parkinsans:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    </div>
+
+	    <div class="calculator">  
+            <div class="row">
+            <div class="col-md-6">
+
+        <!-- LEFT Side of the Web-->
+       <br><br>
+
+       <div class="purplebox">
+        <br>
+        <h2>BMI <span style=" color: #f7c319">Calculator</span></h2>
+
+        <p style="margin-left: 40px; margin-right: 40px"><i><b>What is BMI?</b></i> BMI, also known as <i>Body Mass Index</i> is a calculation healthcare providers use to edtimate the amount of body fat using your height and weight.</p>
+        <br>
+        </div>
+
+        <br>
+        <details ontoggle="inst()">
+            <summary>
+                <u style="color: #b57edc">Instructions</u>
+                <br>
+                    <i id="desc_inst"></i>
+            </summary>
+        </details>
+
+        <br>
+
+        <label>
+            <input id="height_m" type="number" placeholder="Input Height in Meters">
+        </label>
+
+         <br><br>
+        <kbd id = "m"> ^ Meters </kbd> 
+
+        <br><br>
+
+        <label>
+            <input id="weight_kg" type="number" placeholder="Input Weight in Kilograms">
+        </label>  
+
+        <br><br>
+
+        <kbd id = "kg"> ^ Kilograms </kbd>
+
+        <br><br> 
+
+        <button type="submit" class="btn btn-warning" onclick="getbmi()">Calculate Your BMI</button>
+
+        <br><br>
+            
+        <div class="bmi_value">
+            <h4>Your <span style="color: #b57edc"> BMI Value </span> is... </h4>
+            <div id="value"></div>
+            <p id="roundedresult"></p>
+        </div>
+
+        <div class="bmi_category">
+            <h4>You are... </h4>
+            <div id="category"></div>
+        </div>   
+    </div>
+
+        <!-- RIGHT Side of the Web-->
+            <div class="col-md-6">
+
+                <img src="https://www.myheart.org.sg/wp-content/uploads/2022/03/BMI-Calculator.png">
+
+            </div>
+        </div>
+    </div>
+
+    
+
+<script> 
+    // Function for Instructions
+    function inst(){
+        document.getElementById("desc_inst").innerHTML = "Please input your Height in METERS and your Weight in KILOGRAMS in the boxes below.";
+            }
+
+</script>
+
+<script>
+    // Function for the Calculations. This is where the codes for the BMI results or outputs take place. 
+	function getbmi(){
+    var height = document.getElementById("height_m").value;
+    var weight = document.getElementById("weight_kg").value;
+
+    var bruh = weight / Math.pow(height, 2);
+   	let actual_result = bruh.toFixed(2);
+
+    if(actual_result){
+        document.getElementById("value").innerHTML = actual_result;
+        document.getElementById("value").style.fontSize = "xx-large";
+        document.getElementById("value").style.color = "#f7c319";
+
+        if(actual_result < 18.5){
+            document.getElementById("category").innerHTML = "Underweight. Eat nutrious foods high in calories.";
+              document.getElementById("category").style.color = "#4152f0"; 
+               document.getElementById("category").style.fontSize = "xx-large";
+        }
+        else if(actual_result >=18.5 && actual_result <=24.9){
+            document.getElementById("category").innerHTML = "Healthy! Keep it up.";
+            document.getElementById("category").style.color = "#0db512"
+             document.getElementById("category").style.fontSize = "xx-large";
+        }
+        else if(actual_result >=25 && actual_result<=29.9){
+            document.getElementById("category").innerHTML = "Overweight. Cut your calories and restrict certain foods.";
+              document.getElementById("category").style.color = "yellow"
+              document.getElementById("category").style.fontSize = "xx-large";
+        }
+        else if (actual_result >=30) {
+            document.getElementById("category").innerHTML = "Obese. Eat a balanced diet and take up physical activities.";
+              document.getElementById("category").style.color = "red"
+              document.getElementById("category").style.fontSize = "xx-large";
+        }
+
+        else {
+        	window.alert("Please input your height and weight."); window.location.reload();
+        }
+   }
+}
+</script>
+    <!-- This is footer -->
+        <div class="footer">
+                <br>
+                <p> @ 2025 Bernas, Giana Zoe, 9 Ruby </p>
+                <a style="color: grey" href="https://docs.google.com/document/d/1BWCcZ2ywZ09hgeyTMF4cCZgiDZ199S1gUY1jZaCi3cc/edit?usp=sharing"> References </a>
+            </div>
+</body>
+</html>
